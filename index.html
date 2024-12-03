@@ -1,0 +1,439 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>Магазин "Ярче"</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial Narrow', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fde2a6;
+            background: linear-gradient(to bottom, #b89d74, #dfbe77);
+            color: #74522c;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        header {
+            background: linear-gradient(to bottom, #b1fff9, #7ba5ff);
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: end;
+            margin-bottom: 20px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav ul li {
+            display: inline;
+        }
+
+        header nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #f3f4f6;
+        }
+
+        #products {
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .product {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .product h3 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .product p {
+            color: #666666;
+            margin-bottom: 0.5rem;
+        }
+
+        .product button {
+            background: linear-gradient(to right, #11998e, #38ef7d);
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+
+        .product button:hover {
+            background: linear-gradient(to right, #0c8976, #30c270);
+        }
+
+        #cart {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        #cart h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item button {
+            background: linear-gradient(to right, #ff4d4f, #ff6382);
+            color: #ffffff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+
+        .cart-item button:hover {
+            background: linear-gradient(to right, #e63c3f, #f34d6f);
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity button {
+            background: linear-gradient(to right, #11998e, #38ef7d);
+            color: #ffffff;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+        }
+
+        .quantity button:hover {
+            background: linear-gradient(to right, #0c8976, #30c270);
+        }
+
+        .quantity input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 0 0.5rem;
+            padding: 4px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: to bottom;
+            align-items: to bottom;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .registration-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-field {
+            margin-bottom: 15px;
+        }
+        .form-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #9de1f5; 
+            color: white; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer; 
+            width: 100%;
+        }
+        .submit-button:hover {
+            background-color: #a5f5ff; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="registration-form">
+        <h2>Регистрация</h2>
+        <div class="form-field">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" id="username" required>
+        </div>
+        <div class="form-field">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" required>
+        </div>
+        <button class="submit-button" id="registerButton">Зарегистрироваться</button>
+    </div>
+
+    <script>
+        document.getElementById("registerButton").addEventListener("click", function() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username && password) {
+                alert("Регистрация успешна!"); 
+            } else {
+                alert("Пожалуйста, заполните все поля!");
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Онлайн магазин продуктов</h1>
+            <nav>
+                <ul>
+                    <a href="newpage.html">Вкладка</a>
+                    <a href="newpage.html">Корзина</a>
+                    <a href="newpage.html">Поиск</a>
+                    <a href="newpage.html">Отзывы</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <section id="milk products">
+            <h2>Молочные продукты</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 
+                        md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="milk products">
+                    <img 
+                    src=
+https://avatars.mds.yandex.net/i?id=463d1e8449bc4d194529eb62ba4cd05ca5897095-5352587-images-thumbs&n=13
+                     alt="Nike zoomx alphafly Gran venta">
+                    <h3>Cheese</h3>
+                    <p>125.00 руб</p>
+                    <button onclick="addToCart('Товар 1', 125.00)">
+                          Добавить товар
+                      </button>
+                </div>
+
+                <div class="milk products">
+                    <img 
+                    src=
+https://avatars.mds.yandex.net/i?id=7e807fb4c658806272b7d5097ca8e91668a63d79-8497203-images-thumbs&n=13
+                     alt="ASICS DYNAFLYTE 4">
+                    <h3>Milk</h3>
+                    <p>78.67 руб</p>
+                    <button onclick="addToCart('Товар 2', 78.67)">
+                          Добавить товар
+                      </button>
+                </div>
+
+                <div class="milk products">
+                    <img src=
+https://avatars.mds.yandex.net/i?id=55836869b6c8377b7295f483e5ab29085ea56da2-8287805-images-thumbs&n=13
+                     alt="Greek yogurt">
+                    <h3>Yogurt</h3>
+                    <p>123.00 руб</p>
+                    <button onclick="addToCart('Товар 3', 123.00)">
+                          Добавить товар
+                      </button>
+                </div>
+
+                <div class="milk products">
+                    <img src=
+https://avatars.mds.yandex.net/i?id=6dfb6542d4ef4b03fb4343c8e1849a37169e1e9c-12858695-images-thumbs&n=13
+                     alt="Ice cream">
+                    <h3>Ice cream</h3>
+                    <p>213.00 руб</p>
+                    <button onclick="addToCart('Товар 4', 213.00)">
+                          Добавить товар
+                      </button>
+                </div>
+               
+                    </div class="milk products">
+    <style>
+        #image {
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <img id="image" src="https://cdn-sdotid.adg.id/assets/sid-ogp.jpg" alt="Нажмите, чтобы заменить текст">
+    <p id="text" style="display: none;">Состав продукта</p>
+</div>
+
+<script>
+    const image = document.getElementById("image");
+    const text = document.getElementById("text");
+
+    image.addEventListener("click", function() {
+        image.style.display = "none"; 
+        text.style.display = "block";
+    });
+</script>
+
+</body>
+</html>
+
+        </section>
+        <aside id="cart">
+            <h2>Все выбранные товары</h2>
+            <ul id="cart-items">
+            </ul>
+            <button id="buy-button" onclick="checkout()">Купить</button>
+        </aside>
+    </div>
+    <script>
+        let Items = [];
+        function addToCart(name, price) {
+            const index = Items.findIndex(item => item.name === name);
+            if (index !== -1) {
+                Items[index].quantity += 1;
+            } else {
+                const item = {
+                    name: name,
+                    price: price,
+                    quantity: 1
+                };
+                Items.push(item);
+            }
+            updateCartDisplay();
+        }
+        function deleteFromCart(index) {
+            Items.splice(index, 1);
+            updateCartDisplay();
+        }
+        function updateQuantity(index, quantity) {
+            Items[index].quantity = quantity;
+            updateCartDisplay();
+        }
+        function checkout() {
+            let totalPrice = 0;
+            Items.forEach(item => {
+                totalPrice += item.price * item.quantity;
+            });
+            alert(`Total price: ${totalPrice.toFixed(2)}`);
+        }
+        function updateCartDisplay() {
+            const cartElement = document.getElementById('cart-items');
+            cartElement.innerHTML = '';
+            Items.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'cart-item';
+                li.innerHTML = `
+                    <span>${item.name} - ${item.price.toFixed(2)} руб 
+                    <div class="quantity">
+                        <button onclick="updateQuantity(${index},
+                         ${item.quantity - 1})">-</button>
+                        <input type="number" 
+                        value="${item.quantity}" 
+                        min="1" max="10" 
+                        onchange="updateQuantity(${index},
+                         this.value)">
+                        <button 
+                        onclick="updateQuantity(${index},
+                         ${item.quantity + 1})">+</button>
+                    </div>
+                    </span>
+                    <button onclick="deleteFromCart(${index})">Удалить</button>
+                `;
+                cartElement.appendChild(li);
+            });
+        }
+        
+    </script>
+<script src= "https://bot.jaicp.com/chatwidget/hcSbftiY:14537e857b355ac822ea2ec3c58f4d68d2e3fad3/justwidget.js?force=true" async></script>
+</body>
+</html>
